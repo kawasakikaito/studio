@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$error = array();
+
 require('dbconnect.php');
 
 if (!empty($_POST)) {
@@ -65,10 +67,10 @@ if (!empty($_POST)) {
             <form action="" method="post" name="login">
                 <p>学籍番号:<input type="text" name="student_number" placeholder="e1x00000" class="login-student_number"></p>
                 <p>パスワード:<input type="password" name="password" placeholder="パスワード" class="login-password"></p>
-                <?php if ($error['login'] === 'blank') : ?>
+                <?php if (isset($error['login']) && $error['login'] === 'blank') : ?>
                     <p class="error">*学籍番号とパスワードを入力してください</p>
                 <?php endif; ?>
-                <?php if ($error['login'] === 'failed') : ?>
+                <?php if (isset($error['login']) && $error['login'] === 'failed') : ?>
                     <p class="error">*パスワードが間違っています</p>
                 <?php endif; ?>
                 <p><input type="submit" value="ログインする" class="login-button"></p>
