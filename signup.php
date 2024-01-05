@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$error = array();
+
 require('dbconnect.php');
 
 if (!empty($_POST)) {
@@ -90,28 +92,28 @@ if (!empty($_POST)) {
         <div class="signup-form">
             <form action="" method="post" name="signup">
                 <p class="paragraph">学籍番号:<input type="text" name="student_number" placeholder="e1x00000" class="signup-student_number"></p>
-                <?php if ($error['student_number'] == 'blank') : ?>
+                <?php if (isset($error['student_number']) && $error['student_number'] == 'blank') : ?>
                     <p class="error">*学籍番号を入力してください</p>
                 <?php endif; ?>
-                <?php if ($error['student_number'] == 'duplicate') : ?>
+                <?php if (isset($error['student_number']) && $error['student_number'] == 'duplicate') : ?>
                     <p class="error">*既に登録されている学籍番号です</p>
                 <?php endif; ?>
-                <?php if ($error['student_number'] == 'expression') : ?>
+                <?php if (isset($error['student_number']) && $error['student_number'] == 'expression') : ?>
                     <p class="error">*正しい書式で入力してください</p>
                 <?php endif; ?>
                 <p class="paragraph">名前:<input type="text" name="student_name" placeholder="工大太郎" class="signup-student_name"></p>
-                <?php if ($error['student_name'] == 'blank') : ?>
+                <?php if (isset($error['student_name']) && $error['student_name'] == 'blank') : ?>
                     <p class="error">*名前を入力してください</p>
                 <?php endif; ?>
                 <p class="paragraph">パスワード:<input type="password" name="password1" placeholder="4文字以上" class="signup-password"></p>
                 <p class="paragraph">パスワード:<input type="password" name="password2" placeholder="再入力" class="signup-password"></p>
-                <?php if ($error['password'] == 'blank') : ?>
+                <?php if (isset($error['password']) && $error['password'] == 'blank') : ?>
                     <p class="error">*パスワードを入力してください</p>
                 <?php endif; ?>
-                <?php if ($error['password'] == 'length') : ?>
+                <?php if (isset($error['password']) && $error['password'] == 'length') : ?>
                     <p class="error">*パスワードは4文字以上です</p>
                 <?php endif; ?>
-                <?php if ($error['password'] == 'notequall') : ?>
+                <?php if (isset($error['password']) && $error['password'] == 'notequall') : ?>
                     <p class="error">*パスワードが合致しません</p>
                 <?php endif; ?>
                 <p><input type="submit" value="登録する" class="signup-button"></p>
