@@ -7,11 +7,11 @@ if (!$_SESSION['student_number']) {
     header('Location: login.php');
 }
 
-if(!empty($_POST)){
-    if($_POST['band'] == ""){
+if (!empty($_POST)) {
+    if ($_POST['band'] == "") {
         $error['band'] = "blank";
     }
-    if(empty($error)){
+    if (empty($error)) {
         $_SESSION['register'] = $_POST;
         $_SESSION['register']['date'] = $_GET['date'];
         $_SESSION['register']['time'] = $_GET['time'];
@@ -40,12 +40,12 @@ if(!empty($_POST)){
     <header class="page-header">
         <h1><a href="index.php"><img src="images/oit-keionbu.jpg" alt="大阪工業大学"></a></h1>
         <div class="menu">
-            <?php 
+            <?php
             if (!isset($_SESSION['student_number'])) {
 
                 print('<a href="login.php" class="login">ログイン</a>');
                 print('<a href="signup.php" class="signup">新規作成</a>');
-            }else{
+            } else {
                 print('<a href="logout.php" class="logout">ログアウト</a>');
             }
             ?>
@@ -57,17 +57,18 @@ if(!empty($_POST)){
         <h2 class="page-title">スタジオ表登録</h2>
         <div class="register-form">
             <form action="" method="post" name="register">
-            <p class="register-check">予約日:<?php echo htmlspecialchars($_GET['date'], ENT_QUOTES); ?></p>
-            <p class="register-check">時間:<?php echo htmlspecialchars($_GET['time'], ENT_QUOTES); ?>限</p>
-            <p class="register-check">バンド名:<input type="text" name="band" class="register-band">
-            <?php if($error['band']=="blank"): ?>
+                <p class="register-check">予約日:<?php echo htmlspecialchars($_GET['date'], ENT_QUOTES); ?></p>
+                <p class="register-check">時間:<?php echo htmlspecialchars($_GET['time'], ENT_QUOTES); ?>限</p>
+                <p class="register-check">バンド名:<input type="text" name="band" class="register-band">
+                    <?php if ($error['band'] == "blank") : ?>
                 <p class="error">バンド名を入力してください</p>
             <?php endif; ?>
             <div class="check-button">
-            <a class="back-button" href="index.php">戻る</a>
-            <p><input class="register-button" type="submit" value="確認する"></p>
+                <a class="back-button" href="index.php">戻る</a>
+                <p><input class="register-button" type="submit" value="確認する"></p>
             </div>
         </div>
     </div>
 </body>
+
 </html>

@@ -17,12 +17,12 @@
     <header class="page-header">
         <h1><a href="index.php"><img src="images/oit-keionbu.jpg" alt="大阪工業大学"></a></h1>
         <div class="menu">
-            <?php 
+            <?php
             if (!isset($_SESSION['student_number'])) {
 
                 print('<a href="login.php" class="login">ログイン</a>');
                 print('<a href="signup.php" class="signup">新規作成</a>');
-            }else{
+            } else {
                 print('<a href="logout.php" class="logout">ログアウト</a>');
             }
             ?>
@@ -33,10 +33,11 @@
         <h2 class="page-title">ログインもしくは新規作成</h2>
         <div class="loginorsignup-form">
             <div class="check-button">
-            <a class="register-button" href="login.php">ログイン</a>
-            <a class="register-button" href="signup.php">新規作成</a>     
+                <a class="register-button" href="login.php">ログイン</a>
+                <a class="register-button" href="signup.php">新規作成</a>
             </div>
-         </div>
-     </div>
+        </div>
+    </div>
 </body>
+
 </html>

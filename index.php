@@ -2,9 +2,9 @@
 session_start();
 
 if (isset($_REQUEST['page']) && is_numeric($_REQUEST['page'])) {
-    if($_REQUEST['page'] >=5 || $_REQUEST['page'] <=0){
+    if ($_REQUEST['page'] >= 5 || $_REQUEST['page'] <= 0) {
         $page = 1;
-    }else{
+    } else {
         $page = $_REQUEST['page'];
     }
 } else {
@@ -39,11 +39,11 @@ if (isset($_SESSION['student_number']) && $_SESSION['time'] + 3600 > time()) {
     <header class="page-header">
         <h1><a href="index.php"><img src="images/oit-keionbu.jpg" alt="大阪工業大学"></a></h1>
         <div class="menu">
-            <?php 
+            <?php
             if (!isset($_SESSION['student_number'])) {
                 print('<a href="login.php" class="login">ログイン</a>');
                 print('<a href="signup.php" class="signup">新規作成</a>');
-            }else{
+            } else {
                 print('<a href="logout.php" class="logout">ログアウト</a>');
             }
             ?>
@@ -57,12 +57,12 @@ if (isset($_SESSION['student_number']) && $_SESSION['time'] + 3600 > time()) {
         <div class="pagenav">
             <?php if ($page >= 2) : ?>
                 <a class="nav-back" href="index.php?page=<?php print($page - 1); ?>">
-                <img src="images/back.jpg" class="nav" alt="前週">
+                    <img src="images/back.jpg" class="nav" alt="前週">
                 </a>
             <?php endif; ?>
             <?php if ($page <= 3) : ?>
                 <a class="nav-next" href="index.php?page=<?php print($page + 1); ?>">
-                <img src="images/next.jpg" class="nav" alt="次週"></a>
+                    <img src="images/next.jpg" class="nav" alt="次週"></a>
             <?php endif; ?>
         </div>
 
@@ -72,7 +72,7 @@ if (isset($_SESSION['student_number']) && $_SESSION['time'] + 3600 > time()) {
             $week_name = ['日', '月', '火', '水', '木', '金', '土'];
 
             // iのループは日にちを増やす
-            for ($i = ($page-1)*7; $i <= ($page-1)*7+6; $i++) {
+            for ($i = ($page - 1) * 7; $i <= ($page - 1) * 7 + 6; $i++) {
                 print('<table class="studio-date">');
                 print("<tr>");
                 print('<th colspan="2">');
@@ -91,17 +91,17 @@ if (isset($_SESSION['student_number']) && $_SESSION['time'] + 3600 > time()) {
                     ));
                     $post = $posts->fetch();
                     if (isset($post['band_name'])) {
-                        if(strlen($post['band_name'])>= 10){
-                            $scband = mb_substr($post['band_name'],0,9,"UTF-8")."...";
-                        }else{
+                        if (strlen($post['band_name']) >= 10) {
+                            $scband = mb_substr($post['band_name'], 0, 9, "UTF-8") . "...";
+                        } else {
                             $scband = $post['band_name'];
                         }
-                        print("<td class='band'><a href='band.php?band_name=".$post['band_name'].
-                         "&date=". date('Y-m-d',strtotime("+$i day")) ."&time=".$j. 
-                        "'>". htmlspecialchars($scband, ENT_QUOTES) . "<a></td>");                     
+                        print("<td class='band'><a href='band.php?band_name=" . $post['band_name'] .
+                            "&date=" . date('Y-m-d', strtotime("+$i day")) . "&time=" . $j .
+                            "'>" . htmlspecialchars($scband, ENT_QUOTES) . "<a></td>");
                     } else {
-                        print("<td class='band'><a href='register.php?date=". date('Y-m-d',strtotime("+$i day")).
-                        "&time=$j'>―</a></td>");
+                        print("<td class='band'><a href='register.php?date=" . date('Y-m-d', strtotime("+$i day")) .
+                            "&time=$j'>―</a></td>");
                     }
                     print('</td>');
                     print('</tr>');
@@ -112,4 +112,5 @@ if (isset($_SESSION['student_number']) && $_SESSION['time'] + 3600 > time()) {
         </div>
     </div>
 </body>
+
 </html>

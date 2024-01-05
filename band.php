@@ -3,9 +3,9 @@ session_start();
 
 require('dbconnect.php');
 
-if(!empty($_GET)){
+if (!empty($_GET)) {
     $posts = $db->prepare('SELECT * FROM posts INNER JOIN members ON posts.student_number =
-     members.student_number WHERE band_name=? AND date=? AND timetable=? ');   
+        members.student_number WHERE band_name=? AND date=? AND timetable=? ');
     $ret = $posts->execute(array(
         $_GET['band_name'],
         $_GET['date'],
@@ -14,14 +14,14 @@ if(!empty($_GET)){
     $post = $posts->fetch();
 }
 
-if(!empty($_POST)){
+if (!empty($_POST)) {
     $delete = $db->prepare('DELETE FROM posts where band_name=? AND
-     date=? AND timetable=?');   
+        date=? AND timetable=?');
     echo $ret = $delete->execute(array(
         $post['band_name'],
         $post['date'],
         $post['timetable']
-    ));   
+    ));
     header('Location: index.php');
     exit();
 }
@@ -46,11 +46,11 @@ if(!empty($_POST)){
     <header class="page-header">
         <h1><a href="index.php"><img src="images/oit-keionbu.jpg" alt="大阪工業大学"></a></h1>
         <div class="menu">
-            <?php 
+            <?php
             if (!isset($_SESSION['student_number'])) {
                 print('<a href="login.php" class="login">ログイン</a>');
                 print('<a href="signup.php" class="signup">新規作成</a>');
-            }else{
+            } else {
                 print('<a href="logout.php" class="logout">ログアウト</a>');
             }
             ?>
@@ -65,15 +65,15 @@ if(!empty($_POST)){
             <p>登録者:<?php echo $post['student_name'] ?></p>
 
             <div class="check-button">
-            <a class="back-button" href="index.php">戻る</a>
-            <?php if($_SESSION['student_number'] == $post['student_number']): ?>
-                <p>
+                <a class="back-button" href="index.php">戻る</a>
+                <?php if ($_SESSION['student_number'] == $post['student_number']) : ?>
+                    <p>
                     <form action="" method="post" name="delete">
                         <input type="hidden" name="action" value="<?php $post['band_name'] ?>">
-                        <input class="delete-button" type="submit" value="削除する" >
+                        <input class="delete-button" type="submit" value="削除する">
                     </form>
-                </p>
-            <?php endif; ?>
+                    </p>
+                <?php endif; ?>
             </div>
         </div>
     </div>

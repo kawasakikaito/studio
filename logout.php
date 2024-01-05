@@ -22,11 +22,11 @@ unset($_SESSION['student_number']);
     <header class="page-header">
         <h1><a href="index.php"><img src="images/oit-keionbu.jpg" alt="大阪工業大学"></a></h1>
         <div class="menu">
-            <?php 
+            <?php
             if (!isset($_SESSION['student_number'])) {
                 print('<a href="login.php" class="login">ログイン</a>');
                 print('<a href="signup.php" class="signup">新規作成</a>');
-            }else{
+            } else {
                 print('<a href="logout.php" class="logout">ログアウト</a>');
             }
             ?>
@@ -37,4 +37,5 @@ unset($_SESSION['student_number']);
         <h2 class="page-title">ログアウトしました</h2>
     </div>
 </body>
+
 </html>

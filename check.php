@@ -3,12 +3,12 @@ session_start();
 
 require('dbconnect.php');
 
-if(!isset($_SESSION['signup'])){
+if (!isset($_SESSION['signup'])) {
     header('Location: index.php');
-exit();
+    exit();
 }
 
-if(!empty($_POST)){
+if (!empty($_POST)) {
     $statement = $db->prepare('INSERT INTO members SET student_number=?, 
     student_name=?, password=?, created=NOW()');
     echo $ret = $statement->execute(array(
@@ -41,11 +41,11 @@ if(!empty($_POST)){
     <header class="page-header">
         <h1><a href="index.php"><img src="images/oit-keionbu.jpg" alt="大阪工業大学"></a></h1>
         <div class="menu">
-            <?php 
+            <?php
             if (!isset($_SESSION['student_number'])) {
                 print('<a href="login.php" class="login">ログイン</a>');
                 print('<a href="signup.php" class="signup">新規作成</a>');
-            }else{
+            } else {
                 print('<a href="logout.php" class="logout">ログアウト</a>');
             }
             ?>
@@ -57,15 +57,16 @@ if(!empty($_POST)){
         <h2 class="page-title">確認画面</h2>
         <div class="check-form">
             <form action="" method="post" name="check">
-            <input type="hidden" name="action" value="submit">
-            <p class="check_student_number">学籍番号は<span><?php echo htmlspecialchars($_SESSION['signup']['student_number'], ENT_QUOTES); ?></span>でよろしいですか？</p>
-            <div class="check-button">
-            <a class="back-button" href="signup.php">戻る</a>
-            <p><input type="submit" value="登録する"class="signup-button"></p>
-            </div>
+                <input type="hidden" name="action" value="submit">
+                <p class="check_student_number">学籍番号は<span><?php echo htmlspecialchars($_SESSION['signup']['student_number'], ENT_QUOTES); ?></span>でよろしいですか？</p>
+                <div class="check-button">
+                    <a class="back-button" href="signup.php">戻る</a>
+                    <p><input type="submit" value="登録する" class="signup-button"></p>
+                </div>
             </form>
-            </div>
         </div>
     </div>
+    </div>
 </body>
+
 </html>
