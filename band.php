@@ -66,7 +66,9 @@ if (!empty($_POST)) {
 
             <div class="check-button">
                 <a class="back-button" href="index.php">戻る</a>
-                <?php if ($_SESSION['student_number'] == $post['student_number']) : ?>
+                <?php 
+                $studentNumber = isset($_SESSION['student_number']) ? $_SESSION['student_number'] : null;
+                if ($studentNumber == $post['student_number']) : ?>
                     <p>
                     <form action="" method="post" name="delete">
                         <input type="hidden" name="action" value="<?php $post['band_name'] ?>">
